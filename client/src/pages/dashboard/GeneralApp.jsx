@@ -7,7 +7,7 @@ import Contact from "../../components/Contact";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SharedMessages from "../../components/SharedMessages";
-import { useQuery, QueryClient, QueryClientProvider } from "react-query";
+import { useQuery, QueryClient, QueryClientProvider,useQueryClient } from "react-query";
 import NoChat from "../../assets/Illustration/NoChat";
 import { fetchConversationMessages, fetchConversations, fetchUserInfo } from "../../services/conversationdata";
 import { useState, useRef } from "react";
@@ -147,32 +147,32 @@ const GeneralApp = () => {
  //});
 
 
-    const {data: ConversationsAndUserInfo, isLoading :isLoadingConversationAndUserInfo,
-       isError: isErrorConversations, error: errorConversations} = useQuery({
-      queryKey : ["ConversationsAndUserInfo"],
-      queryFn : async () => {
-        try{
-          const conversations_res = await fetch("/conversations/users/conversations");
-          console.log('convres',conversations_res);
+    //const {data: ConversationsAndUserInfo, isLoading :isLoadingConversationAndUserInfo,
+       //isError: isErrorConversations, error: errorConversations} = useQuery({
+      //queryKey : ["ConversationsAndUserInfo"],
+      //queryFn : async () => {
+        //try{
+          //const conversations_res = await fetch("/conversations/users/conversations");
+          //console.log('convres',conversations_res);
           
           
-          const conversations = await conversations_res.json();
-          if(conversations.error) return null;
-          if (!conversations_res.ok){
-            throw new Error(conversations.error || "Something went wrong");
-          }
-          console.log("conversationdata",conversations);
-          //const otherUsers_res = await fetch() fetch the info of other users
+          //const conversations = await conversations_res.json();
+          //if(conversations.error) return null;
+          //if (!conversations_res.ok){
+            //throw new Error(conversations.error || "Something went wrong");
+          //}
+          //console.log("conversationdata",conversations);
+          ////const otherUsers_res = await fetch() fetch the info of other users
           
           
-          return conversations;
-        } catch(error){
-          throw new Error(error);
-          console.log("couldnotfetch");
-        }
-      },
-      retry: false,
-    });
+          //return conversations;
+        //} catch(error){
+          //throw new Error(error);
+          //console.log("couldnotfetch");
+        //}
+      //},
+      //retry: false,
+    //});
 
 
 
@@ -181,7 +181,7 @@ const GeneralApp = () => {
   return (
     <SocketContext.Provider value={socketRef.current}>
       <Stack direction='row' sx={{ width: '100%' }}>
-        <Chats userId={currentuser} setUser={setUser}  data={result.data} handleChatElementClick={handleChatElementClick} />
+        <Chats userId={currentuser} setUser={setUser}   handleChatElementClick={handleChatElementClick} />
         <Box sx={{
           height: '100%', width: sidebar.open ? 'calc(100vw - 740px)' : 'calc(100vw - 420px)',
           backgroundColor: theme.palette.mode === 'light' ? '#F0F4FA' : theme.palette.background.default
