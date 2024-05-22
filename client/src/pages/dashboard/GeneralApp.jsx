@@ -18,6 +18,8 @@ import { setCurrentUserId } from "../../redux/slices/app";
 import { SocketContext } from "../../contexts/SocketContext";
 
 
+const queryClient = new QueryClient();
+
 const GeneralApp = () => {
   const socketRef = useRef();
   const dispatch = useDispatch();
@@ -210,4 +212,11 @@ const GeneralApp = () => {
 
 
 
-export default GeneralApp;
+
+const GeneralAppWithQueryClient = () => (
+  <QueryClientProvider client={queryClient}>
+    <GeneralApp />
+  </QueryClientProvider>
+);
+
+export default GeneralAppWithQueryClient;

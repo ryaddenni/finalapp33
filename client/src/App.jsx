@@ -7,7 +7,7 @@ import NotificationPage from "./pages/notification/NotificationPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import Topbar from "./components/common/Topbar";
 //import GeneralApp from "./pages/dashboard" ;
-import GeneralApp from "./pages/dashboard/GeneralApp";
+import GeneralAppWithQueryClient from "./pages/dashboard/GeneralApp";
 
 
 
@@ -66,7 +66,7 @@ function App() {
 				<Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to='/' />} />
 				<Route path='/notifications' element={authUser ? <NotificationPage /> : <Navigate to='/login' />} />
 				<Route path='/profile/:username' element={authUser ? <ProfilePage /> : <Navigate to='/login' />} />
-				<Route path='/messages' element={authUser ? <GeneralApp /> : <Navigate to='/messages' />} />
+				<Route path='/messages' element={authUser ? < GeneralAppWithQueryClient/> : <Navigate to='/messages' />} />
 				//<Route path='/profile/:username' element={authUser ? <ProfilePage /> : <Navigate to='/login' />} />
 
 			</Routes>
